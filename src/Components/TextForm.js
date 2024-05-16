@@ -9,11 +9,12 @@ export default function TextForm(props) {
   }
   const extractEmail = () =>{
     let emailRegex = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/gi;
-     return text.match(emailRegex) 
+     return text.match(emailRegex)  
   }
   const pressedToUppercase = () => {
     let newText = text.toUpperCase();
     setText(newText);
+    props.updateAlert(" Text is being capitalized","success")
   };
 
   const pressedToLowercase = () => {
@@ -26,8 +27,11 @@ export default function TextForm(props) {
   };
 
   // Calculate word count
-  const wordCount = text.length === 0 ? 0 : text.split(/\s+/).length;
-  //const charCount = text ===" " ? 0 : text.length;
+  //const wordCount = text.length === 0 ? 0 : text.split(/\s/).length;
+  // Calculate word count excluding whitespaces
+const wordCount = text.split(/\s+/). lter(word => word.trim() !== "").length;
+
+  //const charCount = text ===" " ? 0 : text.length;   
   return (
     <>
       <div className="container">
